@@ -58,15 +58,15 @@ class Planet extends SimSphere {
     super.drawMe();
   } 
 
-  void attractBy(Star m) {
-    force = PVector.sub(m.location, location);  
+  void attractBy(Star s) {
+    force = PVector.sub(s.location, location);  
     float d = force.mag();
     distance = d;
     trailSize = 3.14 *2 * distance;
-    d = constrain(d, 5.0, 25.0);
+    //d = constrain(d, 5.0, 25.0);
     force.normalize();
-    float strength = (G * mass * m.mass) / (d * d);
-    force.mult(strength).mult(10000);
+    float strength = ((G * mass * s.mass) / (d * d))*10000;
+    force.mult(strength);//.mult(10000);
     addForce(force);
 
     if (showOrbitTrails) {

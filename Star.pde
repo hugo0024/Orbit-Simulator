@@ -39,6 +39,18 @@ class Star extends SimSphere {
     globe.setTexture(img);
   }
 
+  void attractBy(Planet p) {
+    float G = 1;
+    
+    PVector force = PVector.sub(p.location, location);  
+    float d = force.mag();
+    //d = constrain(d, 5.0, 25.0);
+    force.normalize();
+    float strength = ((G * this.mass * p.mass) / (d * d))*10000;
+    force.mult(strength);//.mult(10000);
+    addForce(force);
+  }
+
   public void drawMe() {
     update();
 

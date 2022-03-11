@@ -73,15 +73,15 @@ void setup() {
   plutoT = loadImage("pluto.jpg");
 
   sun = new Star(vec(0, 0, 0), 200.0f, sunT);
-  sun.setMass(5);
+  sun.setMass(10000);
   allStar.add(sun);
 
   mercury = new Planet(vec(800, 0, 0), 8.0f, mercuryT, "Mercury");
-  mercury.velocity = new PVector(0, 0, -250);
+  mercury.velocity = new PVector(0, 0, -300);
   allPlanet.add(mercury);
 
   venus = new Planet(vec(1300, 0, 0), 20.0f, venusT, "Venus");
-  venus.velocity = new PVector(0, 0, 320);
+  venus.velocity = new PVector(0, 0, 280);
   allPlanet.add(venus);
 
   addUI();
@@ -96,11 +96,17 @@ void draw() {
 
   fps = str(int(frameRate));
 
-  sun.drawMe();
-  mercury.attractBy(sun);
-  venus.attractBy(sun);
-  mercury.drawMe();
-  venus.drawMe();
+  for (int n = 0; n < allPlanet.size(); n++) {
+    Planet thisPlanet = allPlanet.get(n);
+
+    sun.drawMe();
+    sun.attractBy(thisPlanet);
+
+    thisPlanet.drawMe();
+    thisPlanet.attractBy(sun);
+    
+  }
+
   myCamera.update();
   castAddForceRay();
   transAddForceRay();
@@ -241,6 +247,10 @@ public void addUI() {
   Slider SunMassSlider = myUI.addSlider("Sun Mass", 500, 11);
   SunMassSlider.setSliderValue(0.5);
 
+
+  SimpleButton SpawnPlanet = myUI.addSimpleButton("Spawn", 620, 12);
+  SpawnPlanet.setWidgetDims(95, 27);
+
   TextDisplayBox StarLabel = myUI.addTextDisplayBox("Star", 1350, 12, str(allStar.size()) );
   StarLabel.setWidgetDims(80, 27);
   StarLabel.textSize = 12;
@@ -360,10 +370,17 @@ void handleUIEvent(UIEventData  uied) {
   if (uied.menuItem.equals("Follow") ) {
     selectedPlanet = allPlanet.get(0);
   }
-  
+
   if (uied.eventIsFromWidget("Force to Add") ) {
     float amount = uied.sliderValue * 10000;
     //forceToAdd.x = amount;
+  }
+
+  if (uied.eventIsFromWidget("Spawn") ) {
+    Planet newPlanet = new Planet(vec(2000, 0, 0), 20.0f, venusT, "NewPlanet");
+    newPlanet.velocity = new PVector(0, 0, -100);
+    newPlanet.mass = 10000;
+    allPlanet.add(newPlanet);
   }
 }
 
