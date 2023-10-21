@@ -1,27 +1,3 @@
-// SimpleUI_Classes version 2
-// Started Dec 12th 2018
-// This update March 2021
-// Simon Schofield
-// introduces image icons for buttons
-
-
-//////////////////////////////////////////////////////////////////
-// SimpleUI() is the only class you have to use in your 
-// application to build and use the UI. 
-// With it you can add buttons, sliders, menus and text boxes
-// You can use a file dialogue to load and save files
-//
-//
-// 
-//
-// Once a mouse event has been received by a UI item (button, menu etc) it calls a function called
-// simpleUICallback(...) which you have to include in the 
-// main part of the project (below setup() and draw() etc.)
-//
-// Also, you need to call uiManager.drawMe() in the main draw() function
-//
-
-
 public class SimpleUI {
 
   SimpleUIRect canvasRect;

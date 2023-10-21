@@ -1,17 +1,3 @@
-// Complete Mover class
-// This mover class accelerates according to the force accumulated over TIME
-// MASS is taken into consideration by using F=MA (or acceleation = force/mass)
-// Mass is represented by the surface area of the ball
-// 
-// The system works thus:-
-// within each FRAME of the system
-// 1/ calculate the cumulative acceleration (by acceleration += force/mass) by adding all the forces, including friction
-// 2/ scale the acceleration by the elapsed time since the last frame (will be about 1/60th second)
-// 3/ Add this acceleration to the velocity
-// 5/ Move the ball by the velocity scaled by the elapsed time since the last frame
-// 5/ Set the acceleration back to zero again
-// repeat
-
 class Planet extends SimSphere {
 
   Timer timer = new Timer();

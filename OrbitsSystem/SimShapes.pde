@@ -1,26 +1,3 @@
-
-
-///////////////////////////////////////////////////////////////////////////////////////
-// SimShapes V Alpha 1.4 7 Feb 2020 by Simon Schofield
-//
-// SimShapes is a set of 3D shapes you can make, transform around 3D space, 
-// and ... CRITICALLY... get their transformed geometry (locations/extents/ bounding sphere etc.)
-// This is necessary for running physisc simulations.
-//
-// IN this version you can load an .obj file and transform it and get it's location etc.
-
-///////////////////////////////////////////////////////////////////////////////////////
-// SimObjectManager
-// This is a sort of "database" for you to add SimObjects to. Once added
-// You can get them from the manager via their "id" tag - a string (make sure its unique) 
-// You can iterate through them usng a simple index number
-// Other uses...
-// Ray Intersection calculations - all objects can be intersected by a SimRay and return intersection points etc.
-// Inter-object collision - The manager will determine all inter-object collitions and report them back (not finishe yet)
-// Drawing them, all at once, or individually
-// 
-
-
 class SimObjectManager {
   ArrayList<SimTransform> simObjList = new ArrayList<SimTransform>();
 
